@@ -1,10 +1,7 @@
-import React, { useState } from "react";
+import { devices } from "../../../styles/mediaQueries";
 import styled from "styled-components";
-import { Action } from "./TodoList";
-import { devices } from "../../styles/mediaQueries";
-import { ActionTypes } from "./TodoList";
 
-const Container = styled.div`
+export const Container = styled.div`
   width: 100%;
   background: #bbcfd7;
   height: 80px;
@@ -13,7 +10,7 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-const Form = styled.form`
+export const Form = styled.form`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,7 +20,7 @@ const Form = styled.form`
   }
 `;
 
-const Input = styled.input`
+export const Input = styled.input`
   height: 40px;
   padding-left: 40px;
   background: white;
@@ -45,7 +42,7 @@ const Input = styled.input`
   }
 `;
 
-const Button = styled.button`
+export const Button = styled.button`
   width: 100px;
   height: 40px;
   border: none;
@@ -68,29 +65,3 @@ const Button = styled.button`
     font-size: 12px;
   }
 `;
-interface IProps {
-  dispatch: React.Dispatch<Action>;
-}
-
-const TodoInput = ({ dispatch }: IProps) => {
-  const [inputText, setInputText] = useState("");
-
-  const addTodo = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    if (!inputText) {
-      return;
-    }
-    dispatch({ type: ActionTypes.addTodo, payload: inputText });
-    setInputText("");
-  };
-  return (
-    <Container>
-      <Form>
-        <Input onChange={(e) => setInputText(e.target.value)} value={inputText} placeholder='Add new todo' />
-        <Button onClick={addTodo}>Add Todo</Button>
-      </Form>
-    </Container>
-  );
-};
-
-export default TodoInput;
